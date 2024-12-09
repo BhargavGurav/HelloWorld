@@ -1,0 +1,24 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool:
+  name: my_self_agent
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: production
+    jobs:
+      - job: A
+        steps:
+          - script: echo "Hello from A"
+  
+  - stage: deployment
+    dependsOn: []                  # this makes remove all default and all dependencies and make it run parallal
+    jobs:
+        - job: B 
+          steps:
+            - script: echo "Hello from B"
